@@ -72,9 +72,32 @@ parties.map(d => {
 d3.json('<%= path %>/allData.json')
 .then(resultsRaw => {
 
+
+    let parties = []
+    resultsRaw.england.full.map(d => {if(d.parties) d.parties.map(p => parties.push(p.party))})
+
+    parties = [...new Set(parties)];
+
+    console.log(parties)
+
+
     resultsRaw.england.full.map(d => {
 
+
         if(d.parties){
+
+            let others = d.parties.filter(f => f.party !== 'Con' && f.party !== 'Lab' && f.party !== 'Lib Dem')
+
+            let othersSum = d3.sum(others, s => s.change)
+
+            if(othersSum > 0)
+            {
+                d3.select('.map-wrapper.Ind svg')
+                .append('circle')
+                .attr('class', 'Others')
+                .attr('r' , radius(othersSum / d.totalSeats) + 'px')
+                .attr('transform', `translate(${centroids[d.code]})` )
+            }
 
             d.parties.map( p => {
 
@@ -116,21 +139,6 @@ d3.json('<%= path %>/allData.json')
                         d3.select('.map-wrapper.Lib.Dem svg')
                         .append('circle')
                         .attr('class', 'LD')
-                        .attr('r' , radius(p.change / d.totalSeats) + 'px')
-                        .attr('transform', `translate(${centroids[d.code]})` )
-                    } 
-
-                    
-                }
-
-                if(p.party === 'Ind')
-                {
-
-                    if(p.change > 0)
-                    {
-                        d3.select('.map-wrapper.Ind svg')
-                        .append('circle')
-                        .attr('class', 'NOC')
                         .attr('r' , radius(p.change / d.totalSeats) + 'px')
                         .attr('transform', `translate(${centroids[d.code]})` )
                     } 
