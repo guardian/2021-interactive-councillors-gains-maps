@@ -1,0 +1,46 @@
+@import "fonts";
+@import "mq";
+@import "palette";
+@import "enhancer";
+
+.interactive-atom {
+    margin: 0;
+    padding: 0;
+}
+
+.councillors-wrapper{
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+.map-wrapper{
+	width:100%;
+	max-width: 310px;
+
+	h3{
+		@include fs-header(3);
+	}
+	p{
+		@include fs-bodyHeading(1);
+		font-weight: 300;
+	}
+}
+
+.zzz{
+	fill:none;
+	stroke: #333!important;
+}
+
+.map-bg{fill:#efefef;}
+
+//area{fill-opacity: 0;}
+
+.selected-area{fill:#fafafa;stroke:#dadada;}
+
+.Con{fill:#0084c6;background: #0084c6; fill-opacity: 1; stroke:#ffffff;}
+.Others{fill:#bdbdbd;background: #bdbdbd; fill-opacity: 1; stroke:#ffffff;}
+.Lab{fill:#c70000;background: #c70000; fill-opacity: 1; stroke:#ffffff;}
+.Lib.Dem{fill:#ee6f00;background: #ee6f00; fill-opacity: 1; stroke:#ffffff;}
+.NOC{fill:#767676;background: #767676; fill-opacity: 1; stroke:#ffffff;}
+.undefined{fill:#333333;background: #333333; fill-opacity: 1; stroke:#ffffff;}

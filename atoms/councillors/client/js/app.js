@@ -36,7 +36,6 @@ let path = d3.geoPath()
 const centroids = []
 
 const radius = d3.scaleSqrt()
-.domain([0,0.1])
 .range([0,10])
 
 allFeatures.map(d => centroids[d.properties.code] = path.centroid(d))
@@ -78,7 +77,24 @@ d3.json('<%= path %>/allData.json')
 
     parties = [...new Set(parties)];
 
-    console.log(parties)
+    let divisions = []
+
+
+
+
+    resultsRaw.england.full.map(d => {
+
+        if(d.parties){
+
+            d.parties.map( p => {
+
+                if(p.change / d.totalSeats > 0)divisions.push(p.change / d.totalSeats)
+
+            })
+        }
+    })
+
+    radius.domain([0,d3.max(divisions)])
 
 
     resultsRaw.england.full.map(d => {
