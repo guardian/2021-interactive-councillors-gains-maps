@@ -71,16 +71,7 @@ parties.map(d => {
 d3.json('<%= path %>/allData.json')
 .then(resultsRaw => {
 
-
-    let parties = []
-    resultsRaw.england.full.map(d => {if(d.parties) d.parties.map(p => parties.push(p.party))})
-
-    parties = [...new Set(parties)];
-
     let divisions = []
-
-
-
 
     resultsRaw.england.full.map(d => {
 
