@@ -103,7 +103,13 @@ d3.json('<%= path %>/allData.json')
 
     parties = [...new Set(parties)];
 
-    console.log(parties)
+    d3.select('.colour-key').selectAll('div')
+    .data(parties)
+    .enter()
+    .append('div')
+    .attr('class', d => d)
+    .attr('width', '5px')
+    .attr('height', '5px')
 
     if(window.resize)window.resize()
 })
